@@ -1,0 +1,76 @@
+{
+  "name": "CentOS WildFly Swarm",
+  "id": "stackmza2f74uzzdeh155",
+  "description": "Eclipse WildFly Swarm Stack on CentOS.",
+  "scope": "general",
+  "source": {
+    "type": "image",
+    "origin": "dharmit/wildflyswarm"
+  },
+  "tags": [
+    "Java",
+    "JDK",
+    "Maven",
+    "WildFly Swarm",
+    "CentOS",
+    "Git"
+  ],
+  "workspaceConfig": {
+    "name": "default",
+    "environments": {
+      "default": {
+        "recipe": {
+          "location": "dharmit/wildflyswarm",
+          "type": "dockerimage"
+        },
+        "machines": {
+          "dev-machine": {
+            "attributes": {
+              "memoryLimitBytes": "2147483648"
+            },
+            "agents": [
+              "org.eclipse.che.terminal",
+              "org.eclipse.che.ws-agent",
+              "org.eclipse.che.ssh"
+            ],
+            "servers": {}
+          }
+        }
+      }
+    },
+    "commands": [
+      {
+        "name": "build",
+        "type": "mvn",
+        "attributes": {},
+        "commandLine": "scl enable rh-maven33 'mvn clean install -f ${current.project.path}'"
+      },
+      {
+        "name": "run",
+        "type": "custom",
+        "attributes": {
+          "previewUrl": "http://${server.port.8080}"
+        },
+        "commandLine": "cd ${current.project.path} && scl enable rh-maven33 'java -jar target/*-swarm.jar'"
+      }
+    ],
+    "projects": [],
+    "defaultEnv": "default",
+    "links": []
+  },
+  "components": [
+    {
+      "name": "CentOS",
+      "version": "---"
+    },
+    {
+      "name": "JDK",
+      "version": "1.8.0_45"
+    },
+    {
+      "name": "Maven",
+      "version": "3.2.2"
+    }
+  ],
+  "creator": "che"
+}
