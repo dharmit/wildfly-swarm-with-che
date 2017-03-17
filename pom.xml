@@ -24,6 +24,13 @@
 
   <build>
     <plugins>
+		<plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.6</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
+        </plugin>
       <plugin>
         <groupId>org.wildfly.swarm</groupId>
         <version>2017.3.2</version>
@@ -44,11 +51,11 @@
   </build>
 
   <dependencies>
-    <dependency>
+    <!--<dependency>
       <groupId>org.wildfly.swarm.examples</groupId>
       <version>2017.3.2</version>
       <artifactId>examples-base</artifactId>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.jboss.spec.javax.ws.rs</groupId>
       <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
