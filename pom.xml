@@ -37,6 +37,11 @@
         <artifactId>wildfly-swarm-plugin</artifactId>
         <executions>
           <execution>
+                <goals>
+                    <goal>package</goal>
+                </goals>
+            </execution>
+          <execution>
             <id>package</id>
           </execution>
           <execution>
